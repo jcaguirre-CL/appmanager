@@ -1,0 +1,25 @@
+{
+  "name": "appmanager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcaguirre-CL/appmanager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcaguirre-CL/appmanager/issues"
+  },
+  "homepage": "https://github.com/jcaguirre-CL/appmanager#readme",
+  "dependencies": {
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "nodemailer": "^6.4.6",
+    "sequence": "^3.0.0"
+  }
+}
