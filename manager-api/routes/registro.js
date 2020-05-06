@@ -1,3 +1,18 @@
+const express = require('express');
+const router = express.Router();
+const formdataOperacionesService = require('./formdataOperaciones.service');
+
+// routes
+router.post('/crearEventoOperaciones', creareventooperaciones);
+
+module.exports = router;
+
+function creareventooperaciones(req, res, next) {
+    formdataOperacionesService.create(req.body)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+}
+// REVISAR HACIA ARRIBA
 //este archivo habilita las respuestas en la API
 var express = require('express');
 var app = express();////extra
@@ -10,20 +25,26 @@ var Informe = require('../models/Informe.js'); */
 var ObjectId = require('mongodb').ObjectId;
 const util = require('util')
 
-/* app.use(express.static('/home/jca/Development/NodeJS/bitApp/bitAppServer/bitAppApi/routes/templates'));
+app.use(express.static('./templates'));
 
-const sendEmail = require('/home/jca/Development/NodeJS/bitApp/bitAppServer/bitAppApi/routes/transport.js');
+const sendEmail = require('./transport.js');
 
-var templateString = fs.readFileSync('/home/jca/Development/NodeJS/bitApp/bitAppServer/bitAppApi/routes/templates/correo.ejs', 'utf-8');
-var templateStringNoEvents = fs.readFileSync('/home/jca/Development/NodeJS/bitApp/bitAppServer/bitAppApi/routes/templates/correoNoEvents.ejs', 'utf-8');
-var templateString1Evento = fs.readFileSync('/home/jca/Development/NodeJS/bitApp/bitAppServer/bitAppApi/routes/templates/correo1evento.ejs', 'utf-8');
+var templateString = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/templates/correo.ejs', 'utf-8');
+var templateStringNoEvents = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/templates/correoNoEvents.ejs', 'utf-8');
+var templateString1Evento = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/templates/correo1evento.ejs', 'utf-8');
 
-router.get('/sendMail1Evento/:correo/:listado/:remitente/:fechaInf', function(req, res, next) {
-  console.log(req.params.listado.replace(/"/g, ''));
-  console.log(req.params.fechaInf);
-  var listaEventos = [];
-  var query = { _id: new ObjectId(req.params.listado.replace(/"/g, ''))}
-  Evento.findOne(query, function(err, post) {
+router.get('/sendMailOperaciones/:data', function(req, res, next) {
+  message = ejs.render(templateString1Evento, {
+    result: 'test',
+    remitente: 'soportebitc13@gmail.cl',
+    fechaInf: '29/04/2020'
+  });
+  sendEmail('jcaguirre@13.cl', 'Notificacion eventos BIT', message);
+  // console.log(req.params.listado.replace(/"/g, ''));
+  // console.log(req.params.fechaInf);
+  // var listaEventos = [];
+  // var query = { _id: new ObjectId(req.params.listado.replace(/"/g, ''))}
+/*   Evento.findOne(query, function(err, post) {
     console.log(post);
     message = ejs.render(templateString1Evento, {
       result: post,
@@ -32,13 +53,13 @@ router.get('/sendMail1Evento/:correo/:listado/:remitente/:fechaInf', function(re
     });
     sendEmail(req.params.correo, 'Notificacion eventos BIT', message);
   });
-
-  console.log('##############################################' + req.params.correo, listaEventos);
+ */
+  // console.log('##############################################' + req.params.correo, listaEventos);
   res.json({
     envio: 'ok'
   })
 });
-
+/* 
 router.get('/sendMail/:correo/:listado/:remitente/:turno/:fechaInf', function(req, res, next) {
   var listaEventos = [];
   var Sequence = exports.Sequence || require('sequence').Sequence,

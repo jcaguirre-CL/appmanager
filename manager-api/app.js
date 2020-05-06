@@ -41,7 +41,7 @@ app.use('/api', registro);
  */
 app.use('/users', require('./routes/users.controller'));
 app.use('/formdataoperaciones', require('./routes/formdataOperaciones.controller'));
-
+// app.use('/registro', require('./routes/registro'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
