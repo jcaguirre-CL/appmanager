@@ -1,61 +1,47 @@
 <p>&nbsp;</p>
-<h3>Estimados:</h3>
-<p>&nbsp;</p>
-<h3>El presente informe notifica los eventos registrados durante el turno</h3>
-<p>&nbsp;</p>
-<table border="1" style="border: 1px solid #999; border-collapse: collapse">
-  <tbody>
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">HORA</th>
-        <td style="font-size:small; border: 1px solid black">TEST</td>
-      </tr>
-<!--       <tr>
-          <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">NIVEL</th>
-          <td style="font-size:small; border: 1px solid black"><%=obj.nivel%></td>
-        </tr>      
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">AREA AFECTADA</th>
-        <td style="font-size:small; border: 1px solid black"><%=obj.area%></td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">PROGRAMA</th>
-        <td style="font-size:small; border: 1px solid black"><%=obj.programa%></td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">PLATAFORMA</th>
-        <td style="font-size:small; border: 1px solid black"><%=obj.plataforma.nombre%></td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">ITEM EN FALLA</th>
-        <td style="font-size:small; border: 1px solid black"><%=obj.plataforma.itemfalla%></td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">TIPO DE FALLA</th>
-        <td style="font-size:small; border: 1px solid black"><%=obj.tipofalla%></td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">DESCRIPCION</th>
-        <td style="font-size:small; width:500px; float:left; word-wrap:break-word"><%=obj.descripcion%></td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">SOLUCION</th>
-        <td style="font-size:small; width:500px; float:left; word-wrap:break-word"><%=obj.solucion%></td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">ESTADO</th>
-        <td style="font-size:small; border: 1px solid black"><%=obj.estado%></td>
-      </tr>   
-      <tr>
-        <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">ATENCION</th>
-        <td style="font-size:small; border: 1px solid black"><%=obj.atencion%></td>
-      </tr>         -->       
-  </tbody>
-</table>
+<h3 style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Estimados:</h3>
+<strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">El presente informe notifica el desarrollo de operaciones según el siguiente detalle: </strong>
+<ul>
+  <li>
+    <strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Fecha: <%= fecha%></strong>
+  </li>
+  <li>
+    <strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Responsable: <%= datos.detalleeventoOperaciones.responsableEvento%></strong>
+  </li>
+  <li>
+    <strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Area Producción: <%= datos.detalleeventoOperaciones.produccion.areaProduccion%></strong>
+  </li>
+  <li>
+    <strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Programa: <%= datos.detalleeventoOperaciones.produccion.pgmProduccion%></strong>
+  </li>
+</ul>
+<% if (datos.incidentes.length > 0) { %>
+<p> 
+  <h3 style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Listado de incidentes:</h3>
+</p>  
+  <% for (var i=0; i<datos.incidentes.length;  i++ ) { %>
+    <p> 
+      <table border="3" style="border: 3px solid #999; border-collapse: collapse">
+        <tbody>
+            <tr>
+              <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;position: left;">Tipo de Falla</th>
+              <td style="font-size:small; border: 1px solid black"><%= datos.incidentes[i].detalles[0] %></td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-size:small; border: 1px solid black; font-weight: bold;">Descripción</th>
+              <td style="font-size:small; border: 1px solid black"><%= datos.incidentes[i].descripcion %></td>
+            </tr>
+        </tbody>
+      </table>
+    </p>  
+  <% } %>
+  <%} else { %>
+  <p> 
+    <h3 style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Operación de producción no presenta incidentes</h3>
+  </p>
+<% } %>
 <br />
-<p>&nbsp;</p>
-<h3>Saludos cordiales, </h3>
+<h3 style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Saludos cordiales, </h3>
 <p></p>
-<!-- <h3><%=remitente%></h3> -->
-<h4>Soporte BIT</h4>
-<h4>Ingeniería, Canal 13</h4>
-
+<h4 style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Soporte BIT</h4>
+<h4 style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Ingeniería, Canal 13</h4>
