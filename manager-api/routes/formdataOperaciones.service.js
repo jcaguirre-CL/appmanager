@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../_helpers/db');
 const FormdataOperaciones = db.FormdataOperaciones;
+const FormdataProducciones = db.FormdataProducciones;
 
 const nodemailer = require("nodemailer");
 
@@ -15,6 +16,7 @@ var templateString1Evento = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPM
  */
 module.exports = {
     create,
+    createproduction,
     recuperarRegistrosAll
 };
 
@@ -37,8 +39,22 @@ async function create(formdataParam) {
         fecha: fecha,
         datos: formdataParam
     });
+    console.log(formdataParam.detalleeventoOperaciones.produccion.areaProduccion);
+    const produccion = await FormdataProducciones.findOne({ areaProduccion : formdataParam.detalleeventoOperaciones.produccion.areaProduccion });
+    // recuperarCorreosProduccion(formdataParam.detalleeventoOperaciones.produccion.areaProduccion);
+    console.log(produccion.listacorreoProduccion);
+    enviarcorreo(message, produccion.listacorreoProduccion);
+}
 
-    enviarcorreo(message).catch(console.error);
+async function createproduction(formdataParam) {
+  const formdataproducciones = new FormdataProducciones(formdataParam);
+  await formdataproducciones.save();
+  try {
+      // const obj = JSON.parse(formdataParam);
+      console.log(formdataParam);
+    } catch(err) {
+      console.error(err)
+    }
 }
 
 async function recuperarRegistrosAll() {
@@ -46,12 +62,18 @@ async function recuperarRegistrosAll() {
     return await FormdataOperaciones.find().select('-hash');
 }
 
-async function enviarcorreo(message) {
+async function recuperarCorreosProduccion(areaprod) {
+  return await FormdataProducciones.findOne({areaProduccion: areaprod}, 'listacorreoProduccion',);
+}
+
+async function enviarcorreo(message, lista) {
+  // async function enviarcorreo(message, listacorreoProduccion) {
     // Generate test SMTP service account from ethereal.email
     // Only needed if you don't have a real mail account for testing
     // let testAccount = await nodemailer.createTestAccount();
   
     // create reusable transporter object using the default SMTP transport
+    // console.log(listacorreoProduccion);
     let transporter = nodemailer.createTransport({
 /*       host: "smtp.ethereal.email",
       port: 587,
@@ -68,9 +90,10 @@ async function enviarcorreo(message) {
     // send mail with defined transport object
     let info = await transporter.sendMail({
       from: '"Equipo Soporte BIT" <soportebitc13@gmail.com>', // sender address
-      to: "jcaguirre@13.cl", // list of receivers
+      to: lista, // list of receivers
+      // to: "jcaguirre@13.cl", // list of receivers
       subject: "INFORME: REGISTRO OPERACIONES 13", // Subject line
-      text: "Hello world?", // plain text body
+      // text: "Hello world?", // plain text body
       html: message // html body
     });
   

@@ -9,6 +9,7 @@ const schema = new Schema({
     perfil: { type: String, required: true },
     area: { type: String, required: true },
     correo: { type: String, required: true },
+    correogrupo: { type: [String], required: false },
     createdDate: { type: Date, default: Date.now }
 });
 

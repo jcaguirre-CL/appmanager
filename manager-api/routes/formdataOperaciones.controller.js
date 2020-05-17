@@ -4,12 +4,19 @@ const formdataOperacionesService = require('./formdataOperaciones.service');
 
 // routes
 router.post('/crearEventoOperaciones', creareventooperaciones);
+router.post('/crearProduccion', crearproduccion);
 router.get('/recuperarRegistrosAll', recuperarregistrosall);
 
 module.exports = router;
 
 function creareventooperaciones(req, res, next) {
     formdataOperacionesService.create(req.body)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+function crearproduccion(req, res, next) {
+    formdataOperacionesService.createproduction(req.body)
         .then(() => res.json({}))
         .catch(err => next(err));
 }

@@ -5,5 +5,6 @@ mongoose.Promise = global.Promise;
 
 module.exports = {
     User: require('../models/user.model'),
-    FormdataOperaciones: require('../models/formdataOperaciones.model')
+    FormdataOperaciones: require('../models/formdataOperaciones.model'),
+    FormdataProducciones: require('../models/producciones.model')
 };

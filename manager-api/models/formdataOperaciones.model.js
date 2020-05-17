@@ -8,12 +8,12 @@ const DetalleItemSchema = new Schema({
 /* area: nivelfalla (menor, etc)
 detalle: tipodefalla */
 const IncidenteSchema = new Schema({
-    area: { type: String, required: true },
+    area: { type: String, required: false },
     detalles: [String], 
     descripcion: { type: String, required: true },
     observacion: { type: String, required: false },
-    impacto: { type: String, required: true }, 
-    motivo: { type: String, required: true },
+    impacto: { type: String, required: false }, 
+    motivo: { type: String, required: false },
 });
 
 /* const ProduccionSchema = new Schema({
