@@ -22,13 +22,17 @@ module.exports = {
 
 async function create(formdataParam) {
     const formdataoperaciones = new FormdataOperaciones(formdataParam);
+
+/*     if(true){
+      throw 'Error en el formulario';
+    } */
     await formdataoperaciones.save();
     console.log(formdataParam);
     try {
         // const obj = JSON.parse(formdataParam);
         console.log(formdataParam.incidentes);
       } catch(err) {
-        console.error(err)
+        console.log(err);
       }
     fecha = formdataParam.detalleeventoOperaciones.fechaEvento.
       replace(/T/, ' ').      // replace T with a space
