@@ -7,9 +7,12 @@ const FormdataProducciones = db.FormdataProducciones;
 
 const nodemailer = require("nodemailer");
 
+const path = require("path");
+
 var ejs = require('ejs');
 var fs = require('fs');
-var templateString = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/templates/correo.ejs', 'utf-8');
+// var templateString = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/templates/correo.ejs', 'utf-8');
+var templateString = fs.readFileSync(path.resolve(__dirname,'./templates/correo.ejs'), 'utf-8');
 
 /* const sendEmail = require('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/transport.js');
 var templateString1Evento = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/templates/correo1evento.ejs', 'utf-8');
