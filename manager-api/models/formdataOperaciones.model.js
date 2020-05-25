@@ -41,6 +41,7 @@ const schema = new Schema({
         responsableEvento: { type: String, required: true },
         atencionEvento: { type: String, required: true },
         obsEvento: { type: String, required: false },
+        camaraCamara: { type: String, required: false },
         produccion: {
             areaProduccion: { type: String, required: true },
             responsableProduccion: { type: String, required: true },
