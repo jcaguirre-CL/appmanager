@@ -42,10 +42,24 @@ const schema = new Schema({
         atencionEvento: { type: String, required: true },
         obsEvento: { type: String, required: false },
         camaraCamara: { type: String, required: false },
+        camaraPluma: { type: String, required: false },
+        camaraSteady: { type: String, required: false },
+        camaraPersonal: { type: String, required: false },
+        videoComunicaciones: { type: String, required: false },
+        videoPantallas: { type: String, required: false },
+        videoSwitch: { type: String, required: false },
+        videoPersonal: { type: String, required: false },
+        graficaRecurso: { type: String, required: false },
+        graficaPersonal: { type: String, required: false },
+        audioRecurso: { type: String, required: false },
+        audioPersonal: { type: String, required: false },
+        iluminacionRecurso: { type: String, required: false },
+        iluminacionPersonal: { type: String, required: false },
         produccion: {
             areaProduccion: { type: String, required: true },
             responsableProduccion: { type: String, required: true },
-            pgmProduccion: { type: String, required: true }
+            pgmProduccion: { type: String, required: true },
+            tipopgmProduccion: { type: String, required: true }
          } 
      }
 });
