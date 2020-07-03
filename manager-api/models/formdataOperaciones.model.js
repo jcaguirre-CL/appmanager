@@ -39,6 +39,8 @@ const schema = new Schema({
     detalleeventoOperaciones: {
         fechaEvento: { type: Date, default: Date.now },
         responsableEvento: { type: String, required: true },
+        switchEvento: { type: String, required: true },
+        locacionEvento: { type: String, required: true },
         tipoOperacion: { type: String, required: true },
         tipoLocacion: { type: String, required: true },
         atencionEvento: { type: String, required: true },
