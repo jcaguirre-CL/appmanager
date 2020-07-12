@@ -38,6 +38,12 @@ const schema = new Schema({
     incidentes: [IncidenteSchema],
     detalleeventoOperaciones: {
         fechaEvento: { type: Date, default: Date.now },
+        horaProgIni: { type: String, required: true },
+        horaProgFin: { type: String, required: true },
+        horaRealIni: { type: String, required: true },
+        horaRealFin: { type: String, required: true },
+        atrasoIni: { type: String, required: true },
+        atrasoFin: { type: String, required: true },
         responsableEvento: { type: String, required: true },
         switchEvento: { type: String, required: true },
         locacionEvento: { type: String, required: true },
