@@ -78,6 +78,7 @@ const schema = new Schema({
         utileriaServicio: { type: String, required: false },
         tramoyaServicio: { type: String, required: false },
         supervisorServicio: { type: String, required: false },
+        confirmaProd: { type: String, required: false },
         produccion: {
             areaProduccion: { type: String, required: true },
             responsableProduccion: { type: String, required: true },
