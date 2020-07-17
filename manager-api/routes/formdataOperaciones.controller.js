@@ -6,6 +6,7 @@ const formdataOperacionesService = require('./formdataOperaciones.service');
 router.post('/crearEventoOperaciones', creareventooperaciones);
 router.post('/crearProduccion', crearproduccion);
 router.get('/recuperarRegistrosAll', recuperarregistrosall);
+router.put('/modificarEventoOperaciones', modificareventooperaciones);
 
 module.exports = router;
 
@@ -24,6 +25,13 @@ function crearproduccion(req, res, next) {
 function recuperarregistrosall(req, res, next) {
     formdataOperacionesService.recuperarRegistrosAll()
         .then(registrosall => res.json(registrosall))
+        .catch(err => next(err));
+}
+
+function modificareventooperaciones(req, res, next) {
+    console.log(req.body);
+    formdataOperacionesService.modify(req.body)
+        .then(() => res.json({}))
         .catch(err => next(err));
 }
 

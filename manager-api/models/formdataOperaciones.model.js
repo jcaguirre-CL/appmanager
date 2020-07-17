@@ -10,7 +10,7 @@ detalle: tipodefalla */
 const IncidenteSchema = new Schema({
     area: { type: String, required: false },
     detalles: [String], 
-    descripcion: { type: String, required: true },
+    descripcion: { type: String, required: false },
     observacion: { type: String, required: false },
     impacto: { type: String, required: false }, 
     motivo: { type: String, required: false },
@@ -36,6 +36,7 @@ const DetalleEventoOperacionesSchema = new Schema({
 
 const schema = new Schema({
     incidentes: [IncidenteSchema],
+    id: { type: String, required: false },
     detalleeventoOperaciones: {
         fechaEvento: { type: Date, default: Date.now },
         horaProgIni: { type: String, required: true },
@@ -79,6 +80,7 @@ const schema = new Schema({
         tramoyaServicio: { type: String, required: false },
         supervisorServicio: { type: String, required: false },
         confirmaProd: { type: String, required: false },
+        obsEventoProduccion: { type: String, required: false },
         produccion: {
             areaProduccion: { type: String, required: true },
             responsableProduccion: { type: String, required: true },

@@ -19,19 +19,22 @@ var templateString1Evento = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPM
  */
 module.exports = {
     create,
+    modify,
     createproduction,
     recuperarRegistrosAll
 };
 
 async function create(formdataParam) {
     const formdataoperaciones = new FormdataOperaciones(formdataParam);
-
 /*     if(true){
       throw 'Error en el formulario';
     } */
-    await formdataoperaciones.save();
-    console.log(formdataParam);
-    try {
+    result = await formdataoperaciones.save();
+
+    const sobreid = await FormdataOperaciones.findByIdAndUpdate(result._id,{id: result._id},);
+    // console.log('qqqqqqqqqqqqq',sobreid);
+
+    try { 
         // const obj = JSON.parse(formdataParam);
         console.log(formdataParam.incidentes);
       } catch(err) {
@@ -72,6 +75,16 @@ async function recuperarRegistrosAll() {
 async function recuperarCorreosProduccion(areaprod) {
   return await FormdataProducciones.findOne({areaProduccion: areaprod}, 'listacorreoProduccion',);
 }
+
+async function modify(result) {
+  console.log('id',result.id);
+  // result.detalleeventoOperaciones.confirmaProd = 'SI';
+  const formdataoperaciones = await FormdataOperaciones
+    // .findByIdAndUpdate(result.id,{detalleeventoOperaciones: {obsEventoProduccion: result.detalleeventoOperaciones.obsEventoProduccion}},);
+    .findByIdAndUpdate(result.id,{detalleeventoOperaciones: result.detalleeventoOperaciones},);
+    // .update({_id: result.id}, {$set: {detalleeventoOperaciones: {obsEventoProduccion: result.detalleeventoOperaciones.obsEventoProduccion}}});
+    console.log('modify',formdataoperaciones);
+  }
 
 async function enviarcorreo(message, lista) {
   // async function enviarcorreo(message, listacorreoProduccion) {
