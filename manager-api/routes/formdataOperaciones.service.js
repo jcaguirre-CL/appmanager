@@ -29,52 +29,50 @@ async function create(formdataParam) {
 /*     if(true){
       throw 'Error en el formulario';
     } */
-    result = await formdataoperaciones.save();
+    (async () => {
 
-    if (result.detalleeventoOperaciones.camaraCamara == 'MAL' ||
-    result.detalleeventoOperaciones.camaraPluma == 'MAL' ||
-    result.detalleeventoOperaciones.camaraSteady == 'MAL' ||
-    result.detalleeventoOperaciones.camaraRiel == 'MAL' ||
-    result.detalleeventoOperaciones.camaraDron == 'MAL' ||
-    result.detalleeventoOperaciones.camaraPersonal == 'MAL' ||
-    result.detalleeventoOperaciones.videoComunicaciones == 'MAL' ||
-    result.detalleeventoOperaciones.videoPantallas == 'MAL' ||
-    result.detalleeventoOperaciones.videoSwitch == 'MAL' ||
-    result.detalleeventoOperaciones.videoPersonal == 'MAL' ||
-    result.detalleeventoOperaciones.playRecurso == 'MAL' ||
-    result.detalleeventoOperaciones.playContenido == 'MAL' ||
-    result.detalleeventoOperaciones.playPersonal == 'MAL' ||
-    result.detalleeventoOperaciones.graficaRecurso == 'MAL' ||
-    result.detalleeventoOperaciones.graficaContenido == 'MAL' ||
-    result.detalleeventoOperaciones.graficaPersonal == 'MAL' ||
-    result.detalleeventoOperaciones.audioRecurso == 'MAL' ||
-    result.detalleeventoOperaciones.audioPersonal == 'MAL' ||
-    result.detalleeventoOperaciones.iluminacionRecurso == 'MAL' ||
-    result.detalleeventoOperaciones.iluminacionPersonal == 'MAL' ||
-    result.detalleeventoOperaciones.transporteEnlaceServicio == 'MAL' ||
-    result.detalleeventoOperaciones.energiaServicio == 'MAL' ||
-    result.detalleeventoOperaciones.acServicio == 'MAL' ||
-    result.detalleeventoOperaciones.maquillajeServicio == 'MAL' ||
-    result.detalleeventoOperaciones.utileriaServicio == 'MAL' ||
-    result.detalleeventoOperaciones.tramoyaServicio == 'MAL' ||
-    result.detalleeventoOperaciones.supervisorServicio == 'MAL') {
-      result.detalleeventoOperaciones.errorArea = 'SI'
-      await FormdataOperaciones
-      .findByIdAndUpdate(result._id,{ $set: {detalleeventoOperaciones: result.detalleeventoOperaciones,
-                                            id: result._id}});
-    } else {
-      result.detalleeventoOperaciones.errorArea = 'NO'
-      await FormdataOperaciones
-      .findByIdAndUpdate(result._id,{ $set: {detalleeventoOperaciones: result.detalleeventoOperaciones,
-                                            id: result._id}});
-    }
+        result = await formdataoperaciones.save();
 
-    try { 
-        // const obj = JSON.parse(formdataParam);
-        console.log(formdataParam.incidentes);
-      } catch(err) {
-        console.log(err);
-      }
+        if (result.detalleeventoOperaciones.camaraCamara == 'MAL' ||
+        result.detalleeventoOperaciones.camaraPluma == 'MAL' ||
+        result.detalleeventoOperaciones.camaraSteady == 'MAL' ||
+        result.detalleeventoOperaciones.camaraRiel == 'MAL' ||
+        result.detalleeventoOperaciones.camaraDron == 'MAL' ||
+        result.detalleeventoOperaciones.camaraPersonal == 'MAL' ||
+        result.detalleeventoOperaciones.videoComunicaciones == 'MAL' ||
+        result.detalleeventoOperaciones.videoPantallas == 'MAL' ||
+        result.detalleeventoOperaciones.videoSwitch == 'MAL' ||
+        result.detalleeventoOperaciones.videoPersonal == 'MAL' ||
+        result.detalleeventoOperaciones.playRecurso == 'MAL' ||
+        result.detalleeventoOperaciones.playContenido == 'MAL' ||
+        result.detalleeventoOperaciones.playPersonal == 'MAL' ||
+        result.detalleeventoOperaciones.graficaRecurso == 'MAL' ||
+        result.detalleeventoOperaciones.graficaContenido == 'MAL' ||
+        result.detalleeventoOperaciones.graficaPersonal == 'MAL' ||
+        result.detalleeventoOperaciones.audioRecurso == 'MAL' ||
+        result.detalleeventoOperaciones.audioPersonal == 'MAL' ||
+        result.detalleeventoOperaciones.iluminacionRecurso == 'MAL' ||
+        result.detalleeventoOperaciones.iluminacionPersonal == 'MAL' ||
+        result.detalleeventoOperaciones.transporteEnlaceServicio == 'MAL' ||
+        result.detalleeventoOperaciones.energiaServicio == 'MAL' ||
+        result.detalleeventoOperaciones.acServicio == 'MAL' ||
+        result.detalleeventoOperaciones.maquillajeServicio == 'MAL' ||
+        result.detalleeventoOperaciones.utileriaServicio == 'MAL' ||
+        result.detalleeventoOperaciones.tramoyaServicio == 'MAL' ||
+        result.detalleeventoOperaciones.supervisorServicio == 'MAL') {
+          result.detalleeventoOperaciones.errorArea = 'SI'
+          await FormdataOperaciones
+          .findByIdAndUpdate(result._id,{ $set: {detalleeventoOperaciones: result.detalleeventoOperaciones,
+                                                id: result._id}});
+        } else {
+          result.detalleeventoOperaciones.errorArea = 'NO'
+          await FormdataOperaciones
+          .findByIdAndUpdate(result._id,{ $set: {detalleeventoOperaciones: result.detalleeventoOperaciones,
+                                                id: result._id}});
+        }
+
+    })();
+
     fecha = formdataParam.detalleeventoOperaciones.fechaEvento.
       replace(/T/, ' ').      // replace T with a space
       replace(/\..+/, '')
