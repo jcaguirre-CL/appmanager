@@ -31,8 +31,43 @@ async function create(formdataParam) {
     } */
     result = await formdataoperaciones.save();
 
-    const sobreid = await FormdataOperaciones.findByIdAndUpdate(result._id,{id: result._id},);
-    // console.log('qqqqqqqqqqqqq',sobreid);
+    if (result.detalleeventoOperaciones.camaraCamara == 'MAL' ||
+    result.detalleeventoOperaciones.camaraPluma == 'MAL' ||
+    result.detalleeventoOperaciones.camaraSteady == 'MAL' ||
+    result.detalleeventoOperaciones.camaraRiel == 'MAL' ||
+    result.detalleeventoOperaciones.camaraDron == 'MAL' ||
+    result.detalleeventoOperaciones.camaraPersonal == 'MAL' ||
+    result.detalleeventoOperaciones.videoComunicaciones == 'MAL' ||
+    result.detalleeventoOperaciones.videoPantallas == 'MAL' ||
+    result.detalleeventoOperaciones.videoSwitch == 'MAL' ||
+    result.detalleeventoOperaciones.videoPersonal == 'MAL' ||
+    result.detalleeventoOperaciones.playRecurso == 'MAL' ||
+    result.detalleeventoOperaciones.playContenido == 'MAL' ||
+    result.detalleeventoOperaciones.playPersonal == 'MAL' ||
+    result.detalleeventoOperaciones.graficaRecurso == 'MAL' ||
+    result.detalleeventoOperaciones.graficaContenido == 'MAL' ||
+    result.detalleeventoOperaciones.graficaPersonal == 'MAL' ||
+    result.detalleeventoOperaciones.audioRecurso == 'MAL' ||
+    result.detalleeventoOperaciones.audioPersonal == 'MAL' ||
+    result.detalleeventoOperaciones.iluminacionRecurso == 'MAL' ||
+    result.detalleeventoOperaciones.iluminacionPersonal == 'MAL' ||
+    result.detalleeventoOperaciones.transporteEnlaceServicio == 'MAL' ||
+    result.detalleeventoOperaciones.energiaServicio == 'MAL' ||
+    result.detalleeventoOperaciones.acServicio == 'MAL' ||
+    result.detalleeventoOperaciones.maquillajeServicio == 'MAL' ||
+    result.detalleeventoOperaciones.utileriaServicio == 'MAL' ||
+    result.detalleeventoOperaciones.tramoyaServicio == 'MAL' ||
+    result.detalleeventoOperaciones.supervisorServicio == 'MAL') {
+      result.detalleeventoOperaciones.errorArea = 'SI'
+      await FormdataOperaciones
+      .findByIdAndUpdate(result._id,{ $set: {detalleeventoOperaciones: result.detalleeventoOperaciones,
+                                            id: result._id}});
+    } else {
+      result.detalleeventoOperaciones.errorArea = 'NO'
+      await FormdataOperaciones
+      .findByIdAndUpdate(result._id,{ $set: {detalleeventoOperaciones: result.detalleeventoOperaciones,
+                                            id: result._id}});
+    }
 
     try { 
         // const obj = JSON.parse(formdataParam);

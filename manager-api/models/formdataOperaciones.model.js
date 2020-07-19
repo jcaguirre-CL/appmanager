@@ -81,6 +81,7 @@ const schema = new Schema({
         supervisorServicio: { type: String, required: false },
         confirmaProd: { type: String, required: false },
         obsEventoProduccion: { type: String, required: false },
+        errorArea: { type: String, required: false },
         produccion: {
             areaProduccion: { type: String, required: true },
             responsableProduccion: { type: String, required: true },
