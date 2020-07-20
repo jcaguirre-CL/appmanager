@@ -21,7 +21,8 @@ module.exports = {
     create,
     modify,
     createproduction,
-    recuperarRegistrosAll
+    recuperarRegistrosAll,
+    recuperarRegistrosFiltro
 };
 
 async function create(formdataParam) {
@@ -101,8 +102,21 @@ async function createproduction(formdataParam) {
 }
 
 async function recuperarRegistrosAll() {
-    console.log('testing');
+  console.log('recuperarRegistrosAll');
+  return await FormdataOperaciones.find().select('-hash');
+}
+
+async function recuperarRegistrosFiltro(filtro) {
+  console.log('recuperarRegistrosFiltro', filtro);
+  if (filtro){
+    // return await FormdataOperaciones.find({ "detalleeventoOperaciones.confirmaProd": filtro});
+    // return await FormdataOperaciones.find({ "detalleeventoOperaciones.confirmaProd": {$regex : ".*N.*"}});
+    // return await FormdataOperaciones.find({ "detalleeventoOperaciones.confirmaProd": {$regex : filtro}});
+    return await FormdataOperaciones
+    .find({ "detalleeventoOperaciones.produccion.areaProduccion": {$regex : new RegExp("^" + filtro.toLowerCase(), "i")}});
+  } else {
     return await FormdataOperaciones.find().select('-hash');
+  }
 }
 
 async function recuperarCorreosProduccion(areaprod) {
