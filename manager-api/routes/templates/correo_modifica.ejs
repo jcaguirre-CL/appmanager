@@ -1,6 +1,6 @@
 <p>&nbsp;</p>
 <h3 style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Estimados:</h3>
-<strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">El presente informe notifica el desarrollo de operaciones según el siguiente detalle: </strong>
+<strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Se ha modificado un evento de operación según el siguiente detalle: </strong>
 <ul>
   <li>
     <strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Fecha: <%= fecha%></strong>
@@ -13,6 +13,15 @@
   </li>
   <li>
     <strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Programa: <%= datos.detalleeventoOperaciones.produccion.pgmProduccion%></strong>
+  </li>
+  <li>
+    <strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Observación Operación: <%= datos.detalleeventoOperaciones.obsEvento%></strong>
+  </li>
+  <li>
+    <strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Observación Producción: <%= datos.detalleeventoOperaciones.obsEventoProduccion%></strong>
+  </li>
+  <li>
+    <strong style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#234567">Observación Gestión: <%= datos.detalleeventoOperaciones.obsEventoGestion%></strong>
   </li>
 </ul>
 <% if (datos.incidentes.length > 0) { %>

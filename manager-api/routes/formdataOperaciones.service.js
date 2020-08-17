@@ -13,6 +13,7 @@ var ejs = require('ejs');
 var fs = require('fs');
 // var templateString = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/templates/correo.ejs', 'utf-8');
 var templateString = fs.readFileSync(path.resolve(__dirname,'./templates/correo.ejs'), 'utf-8');
+var templateString_modifica = fs.readFileSync(path.resolve(__dirname,'./templates/correo_modifica.ejs'), 'utf-8');
 
 /* const sendEmail = require('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/transport.js');
 var templateString1Evento = fs.readFileSync('/run/media/machine/DATA/06 DEVELOPMENT/NodeJS/appManager/manager-api/routes/templates/correo1evento.ejs', 'utf-8');
@@ -131,6 +132,17 @@ async function modify(result) {
     .findByIdAndUpdate(result.id,{detalleeventoOperaciones: result.detalleeventoOperaciones},);
     // .update({_id: result.id}, {$set: {detalleeventoOperaciones: {obsEventoProduccion: result.detalleeventoOperaciones.obsEventoProduccion}}});
     console.log('modify',formdataoperaciones);
+
+    fecha = formdataoperaciones.detalleeventoOperaciones.fechaEvento;
+    message = ejs.render(templateString_modifica, {
+        result: 'test',
+        remitente: 'soportebitc13@gmail.cl',
+        fecha: fecha,
+        datos: formdataoperaciones
+    });
+    const produccion = await FormdataProducciones.findOne({ areaProduccion : formdataoperaciones.detalleeventoOperaciones.produccion.areaProduccion });
+    enviarcorreo(message, produccion.listacorreoProduccion);
+
   }
 
 async function enviarcorreo(message, lista) {
