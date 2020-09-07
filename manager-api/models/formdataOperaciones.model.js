@@ -85,6 +85,7 @@ const schema = new Schema({
         errorArea: { type: String, required: false },
         nivelIncidencia: { type: String, required: false },
         nivelImpacto: { type: String, required: false },
+        estadoEvento: { type: String, required: false },
         produccion: {
             areaProduccion: { type: String, required: true },
             responsableProduccion: { type: String, required: true },

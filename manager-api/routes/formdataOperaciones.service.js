@@ -74,14 +74,15 @@ async function create(formdataParam) {
         }
 
     })();
-
+    fecha_tmp = formdataParam.detalleeventoOperaciones.fechaEvento.split('T')[0];
+    console.log(fecha_tmp);
     fecha = formdataParam.detalleeventoOperaciones.fechaEvento.
       replace(/T/, ' ').      // replace T with a space
       replace(/\..+/, '')
     message = ejs.render(templateString, {
         result: 'test',
         remitente: 'soportebitc13@gmail.cl',
-        fecha: fecha,
+        fecha: fecha_tmp,
         datos: formdataParam
     });
     console.log(formdataParam.detalleeventoOperaciones.produccion.areaProduccion);
@@ -132,12 +133,13 @@ async function modify(result) {
     .findByIdAndUpdate(result.id,{detalleeventoOperaciones: result.detalleeventoOperaciones},);
     // .update({_id: result.id}, {$set: {detalleeventoOperaciones: {obsEventoProduccion: result.detalleeventoOperaciones.obsEventoProduccion}}});
     console.log('modify',formdataoperaciones);
-
+    fecha_tmp = formdataoperaciones.detalleeventoOperaciones.fechaEvento.toISOString().split('T')[0];
+    console.log(fecha_tmp);
     fecha = formdataoperaciones.detalleeventoOperaciones.fechaEvento;
     message = ejs.render(templateString_modifica, {
         result: 'test',
         remitente: 'soportebitc13@gmail.cl',
-        fecha: fecha,
+        fecha: fecha_tmp,
         datos: formdataoperaciones
     });
     const produccion = await FormdataProducciones.findOne({ areaProduccion : formdataoperaciones.detalleeventoOperaciones.produccion.areaProduccion });
