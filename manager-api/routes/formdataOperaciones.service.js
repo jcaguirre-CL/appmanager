@@ -170,7 +170,7 @@ async function enviarcorreo(message, lista) {
   
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: '"Equipo Soporte BIT" <soportebitc13@gmail.com>', // sender address
+      from: '"Plataforma de Operaciones 13" <soportebitc13@gmail.com>', // sender address
       to: lista, // list of receivers
       // to: "jcaguirre@13.cl", // list of receivers
       subject: "INFORME: REGISTRO OPERACIONES 13", // Subject line
